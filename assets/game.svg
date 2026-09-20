@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">Signal Runner collaborative ASCII game</title>
+  <desc id="desc">The player is at [2, 2]. 0 of 3 nodes collected after 0 moves.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070a12"/><stop offset="1" stop-color="#0b1520"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .maze { font-size: 16px; letter-spacing: 4px; }
+      .label { fill: #667085; font-size: 12px; letter-spacing: 1px; }
+      .value { fill: #d0d5dd; font-size: 14px; }
+    </style>
+  </defs>
+  <rect width="900" height="420" rx="16" fill="url(#bg)"/>
+  <rect x="1" y="1" width="898" height="418" rx="15" fill="none" stroke="#29364a"/>
+  <text x="42" y="39" fill="#4df7c8" font-size="15" font-weight="700">SIGNAL_RUNNER.exe</text>
+  <text x="858" y="39" text-anchor="end" class="label">LIVE COMMUNITY STATE</text>
+  <path d="M40 57H860" stroke="#263247"/>
+  <g filter="url(#glow)"><text x="50" y="105" class="maze"><tspan fill="#344054">###############################</tspan></text><text x="50" y="124" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">...............</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="143" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">.</tspan><tspan fill="#4df7c8">@</tspan><tspan fill="#273244">....</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">...</tspan><tspan fill="#ffd166">*</tspan><tspan fill="#273244">...</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">.......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">....</tspan><tspan fill="#cb7cff">X</tspan><tspan fill="#273244">.</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="162" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">.......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">..............</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="181" class="maze"><tspan fill="#344054">###</tspan><tspan fill="#273244">.</tspan><tspan fill="#344054">####</tspan><tspan fill="#273244">...............</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="200" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">.......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">.......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="219" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">..............</tspan><tspan fill="#344054">####</tspan><tspan fill="#ffd166">*</tspan><tspan fill="#344054">####</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="238" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">.......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">.......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="257" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">####</tspan><tspan fill="#273244">.</tspan><tspan fill="#344054">####</tspan><tspan fill="#273244">..............</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="276" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">...............</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="295" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">......</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">.......</tspan><tspan fill="#344054">#####</tspan><tspan fill="#273244">.</tspan><tspan fill="#344054">###</tspan><tspan fill="#273244">...</tspan><tspan fill="#ffd166">*</tspan><tspan fill="#273244">..</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="314" class="maze"><tspan fill="#344054">#</tspan><tspan fill="#273244">..............</tspan><tspan fill="#344054">#</tspan><tspan fill="#273244">..............</tspan><tspan fill="#344054">#</tspan></text><text x="50" y="333" class="maze"><tspan fill="#344054">###############################</tspan></text></g>
+  <g transform="translate(610 91)">
+    <text class="label">MISSION</text>
+    <text y="28" class="value">capture * * * → reach X</text>
+    <text y="72" class="label">TELEMETRY</text>
+    <text y="100" class="value">nodes  0/3</text>
+    <text y="126" class="value">moves  0</text>
+    <text y="152" class="value">wins   0</text>
+    <text y="198" class="label">LEGEND</text>
+    <text y="226" fill="#4df7c8" font-size="14">@  you</text>
+    <text y="250" fill="#ffd166" font-size="14">*  signal node</text>
+    <text y="274" fill="#cb7cff" font-size="14">X  uplink</text>
+    <circle cx="228" cy="-3" r="4" fill="#4df7c8"><animate attributeName="opacity" values="1;.15;1" dur="1.2s" repeatCount="indefinite"/></circle>
+  </g>
+  <path d="M40 373H860" stroke="#263247"/>
+  <text x="42" y="400" fill="#8a94a7" font-size="13">&gt; Find 3 signal nodes, then reach the uplink.</text>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "player": [
+    2,
+    2
+  ],
+  "collected": [],
+  "moves": 0,
+  "wins": 0,
+  "status": "Find 3 signal nodes, then reach the uplink."
+}
