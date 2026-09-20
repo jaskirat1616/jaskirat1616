@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://jaskirat.xyz">
-    <img src="./assets/terminal.svg" width="100%" alt="Animated ASCII terminal introducing Jaskirat Singh" />
+    <img src="./assets/header.svg" width="100%" alt="Jaskirat Singh — hardware, perception, and developer tools" />
   </a>
   <br />
   <code>hardware</code> · <code>perception</code> · <code>developer tools</code> · <code>macOS</code>
@@ -63,18 +63,12 @@ I make sensing systems, computer-vision tools, and strange Mac utilities. Curren
 
 ### `~/signal_runner`
 
-Collect `* * *`, then reach `X`. You are `@`. A control opens a move request; submit it and the board rewrites itself.
+Collect `* * *`, then reach `X`. You are `@`. Runs in the browser with arrow keys, WASD, or touch controls.
 
 <div align="center">
-  <img src="./assets/game.svg" width="100%" alt="Signal Runner, a playable ASCII maze" />
+  <a href="https://jaskirat1616.github.io/jaskirat1616/">
+    <img src="./assets/game.svg" width="100%" alt="Signal Runner ASCII maze" />
+  </a>
   <br /><br />
-  <a href="https://github.com/jaskirat1616/jaskirat1616/issues/new?title=ascii-game%3Aup&body=Submit+this+issue+to+move+up.+The+game+will+close+it+automatically.">▲ up</a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/jaskirat1616/jaskirat1616/issues/new?title=ascii-game%3Aleft&body=Submit+this+issue+to+move+left.+The+game+will+close+it+automatically.">◀ left</a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/jaskirat1616/jaskirat1616/issues/new?title=ascii-game%3Adown&body=Submit+this+issue+to+move+down.+The+game+will+close+it+automatically.">▼ down</a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/jaskirat1616/jaskirat1616/issues/new?title=ascii-game%3Aright&body=Submit+this+issue+to+move+right.+The+game+will+close+it+automatically.">▶ right</a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://github.com/jaskirat1616/jaskirat1616/issues/new?title=ascii-game%3Arestart&body=Submit+this+issue+to+reset+the+board.">↻ restart</a>
+  <strong><a href="https://jaskirat1616.github.io/jaskirat1616/">▶ PLAY SIGNAL RUNNER</a></strong>
 </div>

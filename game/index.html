@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07090d" />
+  <title>Signal Runner — Jaskirat Singh</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07090d;
+      --panel: rgba(13, 17, 24, .88);
+      --line: #252c38;
+      --muted: #778195;
+      --text: #e8edf5;
+      --green: #42f5c8;
+      --yellow: #ffd166;
+      --violet: #c37aff;
+      --wall: #3c4658;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(66,245,200,.08), transparent 28rem),
+        radial-gradient(circle at 85% 75%, rgba(195,122,255,.08), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    main {
+      width: min(1060px, 100%);
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 32px 100px rgba(0,0,0,.55);
+      overflow: hidden;
+    }
+
+    main::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      top: 0;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      opacity: .22;
+      animation: scan 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan { to { transform: translateY(680px); } }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--green);
+      font-size: clamp(18px, 3vw, 26px);
+      letter-spacing: -.04em;
+    }
+
+    header a {
+      color: var(--muted);
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    header a:hover { color: var(--text); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 0;
+    }
+
+    .board-wrap {
+      min-width: 0;
+      display: grid;
+      place-items: center;
+      padding: clamp(24px, 5vw, 52px) 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    #board {
+      margin: 0;
+      user-select: none;
+      font: 700 clamp(9px, 1.55vw, 17px)/1.22 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .17em;
+      white-space: pre;
+      text-shadow: 0 0 16px currentColor;
+    }
+
+    .wall { color: var(--wall); text-shadow: none; }
+    .path { color: #202837; text-shadow: none; }
+    .player { color: var(--green); }
+    .node { color: var(--yellow); }
+    .goal { color: var(--violet); }
+
+    aside { padding: 32px 26px; }
+
+    .label {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .mission { margin: 0 0 32px; color: var(--text); font-size: 13px; line-height: 1.7; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 32px;
+      font-size: 13px;
+    }
+
+    .stats span:nth-child(odd) { color: var(--muted); }
+
+    #status {
+      min-height: 58px;
+      margin: 0;
+      color: var(--green);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(3, 48px);
+      grid-template-rows: repeat(2, 44px);
+      justify-content: center;
+      gap: 7px;
+      margin-top: 24px;
+    }
+
+    button {
+      border: 1px solid #313a49;
+      border-radius: 8px;
+      background: #111620;
+      color: #bec7d6;
+      font: inherit;
+      cursor: pointer;
+      transition: border-color .15s, color .15s, transform .08s;
+    }
+
+    button:hover { border-color: var(--green); color: var(--green); }
+    button:active { transform: scale(.94); }
+    button[data-move="up"] { grid-column: 2; }
+    button[data-move="left"] { grid-row: 2; grid-column: 1; }
+    button[data-move="down"] { grid-row: 2; grid-column: 2; }
+    button[data-move="right"] { grid-row: 2; grid-column: 3; }
+
+    .reset {
+      width: 100%;
+      margin-top: 18px;
+      padding: 10px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 28px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .win { animation: hit .25s steps(2) 4; }
+    @keyframes hit {
+      50% { filter: invert(1) hue-rotate(90deg); transform: translateX(3px); }
+    }
+
+    @media (max-width: 760px) {
+      body { padding: 12px; }
+      .layout { grid-template-columns: 1fr; }
+      .board-wrap { border-right: 0; border-bottom: 1px solid var(--line); padding: 30px 8px; }
+      aside { padding: 24px; }
+      #board { font-size: clamp(7px, 2.75vw, 14px); letter-spacing: .08em; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main id="game">
+    <header>
+      <h1>SIGNAL_RUNNER.exe</h1>
+      <a href="https://github.com/jaskirat1616/jaskirat1616">← github profile</a>
+    </header>
+
+    <div class="layout">
+      <section class="board-wrap" aria-label="ASCII maze">
+        <pre id="board" aria-live="polite"></pre>
+      </section>
+
+      <aside>
+        <p class="label">mission</p>
+        <p class="mission">capture <span class="node">* * *</span><br />reach the <span class="goal">X</span> uplink</p>
+
+        <p class="label">telemetry</p>
+        <div class="stats">
+          <span>nodes</span><strong id="nodes">0/3</strong>
+          <span>moves</span><strong id="moves">0</strong>
+          <span>best</span><strong id="best">—</strong>
+        </div>
+
+        <p class="label">system</p>
+        <p id="status">Find the three signal nodes.</p>
+
+        <div class="controls" aria-label="Movement controls">
+          <button type="button" data-move="up" aria-label="Move up">▲</button>
+          <button type="button" data-move="left" aria-label="Move left">◀</button>
+          <button type="button" data-move="down" aria-label="Move down">▼</button>
+          <button type="button" data-move="right" aria-label="Move right">▶</button>
+        </div>
+        <button class="reset" type="button" id="reset">RESET RUN</button>
+      </aside>
+    </div>
+
+    <footer>
+      <span>MOVE: ARROW KEYS / WASD / TOUCH</span>
+      <span>JASKIRAT.XYZ // VANCOUVER</span>
+    </footer>
+  </main>
+
+  <script>
+    const WIDTH = 31;
+    const HEIGHT = 13;
+    const START = [2, 2];
+    const GOAL = [28, 2];
+    const NODES = [[11, 2], [19, 6], [27, 10]];
+    const key = (x, y) => `${x},${y}`;
+    const walls = new Set();
+
+    for (let y = 0; y < HEIGHT; y++) {
+      for (let x = 0; x < WIDTH; x++) {
+        if (x === 0 || x === WIDTH - 1 || y === 0 || y === HEIGHT - 1) walls.add(key(x, y));
+      }
+    }
+    for (let y = 1; y < 11; y++) if (y !== 6) walls.add(key(7, y));
+    for (let y = 2; y < 12; y++) if (y !== 4 && y !== 9) walls.add(key(15, y));
+    for (let y = 1; y < 11; y++) if (y !== 3 && y !== 8) walls.add(key(23, y));
+    for (let x = 1; x < 7; x++) if (x !== 3) walls.add(key(x, 4));
+    for (let x = 8; x < 15; x++) if (x !== 11) walls.add(key(x, 8));
+    for (let x = 16; x < 23; x++) if (x !== 19) walls.add(key(x, 6));
+    for (let x = 16; x < 23; x++) if (x !== 20) walls.add(key(x, 10));
+
+    const board = document.querySelector('#board');
+    const status = document.querySelector('#status');
+    const nodesText = document.querySelector('#nodes');
+    const movesText = document.querySelector('#moves');
+    const bestText = document.querySelector('#best');
+    const game = document.querySelector('#game');
+    let state;
+
+    function fresh() {
+      return { player: [...START], collected: [], moves: 0, won: false };
+    }
+
+    function load() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('signal-runner-state'));
+        if (!Array.isArray(saved.player) || walls.has(key(...saved.player))) throw new Error();
+        return saved;
+      } catch {
+        return fresh();
+      }
+    }
+
+    function save() {
+      localStorage.setItem('signal-runner-state', JSON.stringify(state));
+    }
+
+    function cell(char, className) {
+      return `<span class="${className}">${char}</span>`;
+    }
+
+    function render() {
+      const collected = new Set(state.collected);
+      const playerKey = key(...state.player);
+      const nodeKeys = new Set(NODES.map(([x, y]) => key(x, y)));
+      let html = '';
+
+      for (let y = 0; y < HEIGHT; y++) {
+        for (let x = 0; x < WIDTH; x++) {
+          const point = key(x, y);
+          if (point === playerKey) html += cell('@', 'player');
+          else if (point === key(...GOAL)) html += cell('X', 'goal');
+          else if (nodeKeys.has(point) && !collected.has(point)) html += cell('*', 'node');
+          else if (walls.has(point)) html += cell('#', 'wall');
+          else html += cell('.', 'path');
+        }
+        html += '\n';
+      }
+
+      board.innerHTML = html;
+      nodesText.textContent = `${collected.size}/3`;
+      movesText.textContent = state.moves;
+      bestText.textContent = localStorage.getItem('signal-runner-best') || '—';
+      save();
+    }
+
+    function move(dx, dy) {
+      if (state.won) return;
+      const target = [state.player[0] + dx, state.player[1] + dy];
+      state.moves++;
+
+      if (walls.has(key(...target))) {
+        status.textContent = 'BLOCKED // choose another vector';
+        render();
+        return;
+      }
+
+      state.player = target;
+      const targetKey = key(...target);
+      const collected = new Set(state.collected);
+      if (NODES.some(([x, y]) => key(x, y) === targetKey) && !collected.has(targetKey)) {
+        collected.add(targetKey);
+        state.collected = [...collected];
+        status.textContent = `NODE CAPTURED // ${collected.size}/3`;
+      } else if (targetKey === key(...GOAL) && collected.size === NODES.length) {
+        state.won = true;
+        const oldBest = Number(localStorage.getItem('signal-runner-best')) || Infinity;
+        if (state.moves < oldBest) localStorage.setItem('signal-runner-best', state.moves);
+        status.textContent = 'UPLINK COMPLETE // signal locked';
+        game.classList.add('win');
+        setTimeout(() => game.classList.remove('win'), 1200);
+      } else if (targetKey === key(...GOAL)) {
+        status.textContent = `UPLINK LOCKED // ${NODES.length - collected.size} node(s) missing`;
+      } else {
+        status.textContent = 'SCANNING // keep moving';
+      }
+      render();
+    }
+
+    const vectors = {
+      up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0]
+    };
+
+    document.querySelectorAll('[data-move]').forEach(button => {
+      button.addEventListener('click', () => move(...vectors[button.dataset.move]));
+    });
+
+    document.querySelector('#reset').addEventListener('click', () => {
+      state = fresh();
+      status.textContent = 'RESET // find the three signal nodes';
+      render();
+    });
+
+    window.addEventListener('keydown', event => {
+      const controls = {
+        ArrowUp: vectors.up, w: vectors.up, W: vectors.up,
+        ArrowDown: vectors.down, s: vectors.down, S: vectors.down,
+        ArrowLeft: vectors.left, a: vectors.left, A: vectors.left,
+        ArrowRight: vectors.right, d: vectors.right, D: vectors.right
+      };
+      if (controls[event.key]) {
+        event.preventDefault();
+        move(...controls[event.key]);
+      }
+    });
+
+    state = load();
+    render();
+  </script>
+</body>
+</html>
