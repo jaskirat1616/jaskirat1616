@@ -1,0 +1,33 @@
+name: Render isometric commit calendar
+
+on:
+  schedule:
+    - cron: "17 8 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/metrics.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-metrics
+  cancel-in-progress: true
+
+jobs:
+  isocalendar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Render full-year isometric calendar
+        uses: lowlighter/metrics@latest
+        with:
+          filename: assets/isocalendar.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          user: jaskirat1616
+          base: ""
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          config_timezone: America/Vancouver
+          config_display: large

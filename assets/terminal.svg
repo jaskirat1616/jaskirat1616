@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img" aria-labelledby="title desc">
-  <title id="title">Jaskirat Singh — builder of hardware and intelligent systems</title>
-  <desc id="desc">An animated terminal with a rotating ASCII cube, system messages, and Jaskirat's name.</desc>
+  <title id="title">Jaskirat Singh terminal</title>
+  <desc id="desc">An animated terminal with a rotating ASCII cube and terse build status.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#070a12"/>
@@ -33,7 +33,7 @@
   <path d="M18 48H882" stroke="#ffffff" stroke-opacity=".09"/>
 
   <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">
-    <text x="36" y="76" fill="#4df7c8" font-size="15">$ whoami <tspan fill="#8a94a7">--verbose</tspan></text>
+    <text x="36" y="76" fill="#4df7c8" font-size="15">$ ./jaskirat <tspan fill="#8a94a7">--status</tspan></text>
     <text x="54" y="121" fill="#78a9ff" opacity=".16" font-size="37" font-weight="700" letter-spacing="2">JASKIRAT SINGH</text>
     <g clip-path="url(#type-name)">
       <text x="54" y="121" fill="url(#line)" font-size="37" font-weight="700" letter-spacing="2" filter="url(#glow)">JASKIRAT SINGH</text>
@@ -43,12 +43,12 @@
       <animate attributeName="opacity" values="1;0;1;0;1" dur=".8s" repeatCount="indefinite"/>
     </rect>
 
-    <text x="38" y="163" fill="#79849a" font-size="14">BUILD TARGET</text>
-    <text x="176" y="163" fill="#e5e7eb" font-size="14">machines that sense, understand &amp; respond</text>
-    <text x="38" y="190" fill="#79849a" font-size="14">COORDINATES</text>
-    <text x="176" y="190" fill="#e5e7eb" font-size="14">Vancouver, BC  /  49.2827° N</text>
-    <text x="38" y="217" fill="#79849a" font-size="14">CURRENTLY</text>
-    <text x="176" y="217" fill="#e5e7eb" font-size="14">building Humonos</text>
+    <text x="38" y="163" fill="#79849a" font-size="14">MODE</text>
+    <text x="176" y="163" fill="#e5e7eb" font-size="14">hardware / perception / tools</text>
+    <text x="38" y="190" fill="#79849a" font-size="14">LOC</text>
+    <text x="176" y="190" fill="#e5e7eb" font-size="14">Vancouver, BC</text>
+    <text x="38" y="217" fill="#79849a" font-size="14">PID 001</text>
+    <text x="176" y="217" fill="#e5e7eb" font-size="14">Humonos — cognitive sensing</text>
 
     <g transform="translate(635 78)" fill="none" stroke="#72e6ca" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
       <g>
@@ -58,17 +58,17 @@
       </g>
       <circle cx="84" cy="67" r="4" fill="#cb7cff" stroke="none"><animate attributeName="r" values="3;7;3" dur="2s" repeatCount="indefinite"/></circle>
       <path d="M-8 160H172" stroke="#78a9ff" stroke-dasharray="2 7" opacity=".45"><animate attributeName="stroke-dashoffset" values="0;-36" dur="2s" repeatCount="indefinite"/></path>
-      <text x="82" y="184" text-anchor="middle" fill="#79849a" stroke="none" font-size="11">PHYSICAL ↔ DIGITAL</text>
+      <text x="82" y="184" text-anchor="middle" fill="#79849a" stroke="none" font-size="11">SENSORS ↔ SOFTWARE</text>
     </g>
 
-    <text x="38" y="266" fill="#4df7c8" font-size="14">$ boot curiosity.engine</text>
+    <text x="38" y="266" fill="#4df7c8" font-size="14">$ ps -A | grep building</text>
     <g font-size="13">
-      <text x="38" y="293" fill="#52d273">[ OK ]</text><text x="93" y="293" fill="#99a3b6">wearable sensing online</text>
-      <text x="306" y="293" fill="#52d273">[ OK ]</text><text x="361" y="293" fill="#99a3b6">spatial stack online</text>
-      <text x="558" y="293" fill="#52d273">[ OK ]</text><text x="613" y="293" fill="#99a3b6">weird ideas enabled</text>
+      <text x="38" y="293" fill="#52d273">[RUN]</text><text x="93" y="293" fill="#99a3b6">wearable sensing</text>
+      <text x="306" y="293" fill="#52d273">[RUN]</text><text x="361" y="293" fill="#99a3b6">3D reconstruction</text>
+      <text x="558" y="293" fill="#52d273">[RUN]</text><text x="613" y="293" fill="#99a3b6">odd Mac utilities</text>
     </g>
     <text x="38" y="329" fill="#657086" font-size="12">jaskirat.xyz</text>
-    <text x="862" y="329" text-anchor="end" fill="#657086" font-size="12">BUILD // TEST // SHIP // REPEAT</text>
+    <text x="862" y="329" text-anchor="end" fill="#657086" font-size="12">SWIFT // PYTHON // CUDA // METAL</text>
   </g>
 
   <rect x="0" y="48" width="900" height="2" fill="#4df7c8" opacity=".07">
